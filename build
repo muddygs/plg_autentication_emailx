@@ -1,0 +1,16 @@
+#!/bin/bash
+
+VERSION=4.0.0
+
+/usr/bin/rm plg_authentication_email.zip
+/usr/bin/rm -rf package/packages
+/usr/bin/mkdir -p package/packages
+
+/usr/bin/cp pkg_emailx.xml package
+
+cd plugin && zip -r ../package/packages/plg_auth_emailx-$VERSION.zip . && cd -
+cd system && zip -r ../package/packages/plg_system_emailx-$VERSION.zip . && cd -
+
+cd package && zip -r ../plg_authentication_emailx.zip . && cd -
+/usr/bin/cp plg_authentication_emailx.zip releases/$VERSION/plg_authentication_emailx-$VERSION.zip
+

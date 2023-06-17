@@ -1,0 +1,17 @@
+Original Author's Copyright Notice:
+
+<extension type="plugin" group="authentication" method="upgrade">
+	<name>plg_authentication_email</name>
+	<author>Michael Richey</author>
+	<creationDate>March 2011</creationDate>
+	<copyright>Copyright (C) 2005 - 2011 Michael Richey. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>authemail@richeyweb.com</authorEmail>
+	<authorUrl>www.richeyweb.com</authorUrl>
+</extension>
+
+Source: https://www.richeyweb.com/
+
+Code was updated for compatibility with Joomla 4.
+
+License remains GNU General Public License version 2 or later
