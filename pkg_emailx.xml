@@ -2,10 +2,10 @@
 <extension type="package" method="upgrade">
     <name>Authentication - Emailx</name>
     <creationDate>June 2023</creationDate>
-    <packagename>email</packagename>
+    <packagename>emailx</packagename>
     <version>4.0.0</version>
     <url>https://www.github.com/muddygs</url>
-    <author>Michael Richey / Merrill Squiers</author>
+    <author>Merrill Squiers/Michael Richey</author>
     <authorEmail>muddygs@gmail.com</authorEmail>
     <authorUrl>https://www.github.com/muddygs</authorUrl>
     <description>Authentication - Email authentication for Joomla 4</description>
@@ -14,6 +14,6 @@
         <file type="plugin" id="email" group="authentication">plg_auth_emailx-4.0.0.zip</file>
     </files>
     <updateservers>
-        <server type="extension" priority="1" name="Update Site">https://www.richeyweb.com/muddygs/plg_authentication_email/updates/authemail.xml</server>
+        <server type="extension" priority="1" name="Update Site">https://www.github.com/muddygs/plg_authentication_emailx/updates/authemailx.xml</server>
     </updateservers>
 </extension>
