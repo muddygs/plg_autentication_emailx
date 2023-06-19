@@ -32,11 +32,12 @@ final class Email extends CMSPlugin
     // onUserAuthenticate method as of Joomla 4.3.1
 
 
-    
+
     use DatabaseAwareTrait;
 
     // The following properties are initialized by CMSPlugin::__construct()
     protected $db;
+    protected $app;
     protected $autoloadLanguage = true;
 
     private $_paj;
@@ -55,7 +56,7 @@ final class Email extends CMSPlugin
     {
         $query = $this->db->getQuery(true);
 
-        $username = Factory::getApplication()->input->post->get('username', false, 'RAW');
+        $username = $this->app->input->post->get('username', false, 'RAW');
         $query->select('id, username, password')
             ->from('#__users')
             ->where('block = 0')
@@ -67,8 +68,8 @@ final class Email extends CMSPlugin
         if ($result) {
             // why mess with re-creating authentication - just use the system.
             $credentials['username'] = $result->username;
-            $this->_paj->setDatabase($this->getDatabase());
-            $this->_paj->setApplication(Factory::getApplication());
+            $this->_paj->setDatabase($this->db);
+            $this->_paj->setApplication($this->app);
             $this->_paj->onUserAuthenticate($credentials, $options, $response);
         } else {
             $response->status = Authentication::STATUS_FAILURE;
