@@ -1,23 +1,42 @@
 <?php
+
 /**
- * @version		$Id: email.php 20196 2011-03-04 02:40:25Z mrichey $
- * @package		plg_auth_email
- * @copyright	Copyright (C) 2005 - 2011 Michael Richey. All rights reserved.
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ * Original author's header:
+ * version		$Id: email.php 20196 2011-03-04 02:40:25Z mrichey $
+ * package		plg_auth_email
+ * copyright	Copyright (C) 2005 - 2011 Michael Richey. All rights reserved.
+ * license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // No direct access
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\Event\SubscriberInterface;
 
-// jimport('joomla.plugin.plugin');
+/**
+ * @package plgSystemEmail
+ * @author Merrill Squiers
+ * @since  Joomla 4.0
+ * @version 4.0.0
+ */
 
-class plgSystemEmail extends CMSPlugin
+class plgSystemEmail extends CMSPlugin implements SubscriberInterface
 {
-	function onAfterRoute()
+    // The following properties are initialized by CMSPlugin::__construct()
+    protected $db;
+    protected $app;
+    protected $autoloadLanguage = true;
+
+    public static function getSubscribedEvents(): array { 
+        return [
+            'onAfterRoute' => 'handleResetConfirm',
+        ];
+    }
+
+	function handleResetConfirm()
 	{
-            $app = Factory::getApplication();
+            $app = $this->app;
             if($app->getName() === 'administrator') return;
             $component = $app->input->getCmd('option');
             if($component != 'com_users') return;
@@ -27,13 +46,16 @@ class plgSystemEmail extends CMSPlugin
             // ok, at this point we know that the form has been submitted.
             $jform = $app->input->get('jform',array(),'array');
             if(count($jform) && preg_match('/@/',$jform['username'])) {
-                $db = Factory::getDbo();
+                $db = $this->db;
                 $query = $db->getQuery(true);
-                $query->select('username')->from('#__users')->where('UPPER(email) = UPPER('.$db->quote($jform['username']).')');
+                $query->select('username')
+                    ->from('#__users')
+                    ->where('UPPER(email) = UPPER('.$db->quote($jform['username']).')')
+                    ->where('block = 0');
                 $db->setQuery($query);
-                $username = $db->loadObjectList();
-                if(count($username)) {
-                    $jform['username']=$username[0]->username;
+                $username = $db->loadResult();
+                if( $username !== null ) {
+                    $jform['username']=$username;
                     $app->input->set('jform',$jform);
                 }
             }
