@@ -6,14 +6,15 @@
 	<copyright>Copyright (C) 2005 - 2011 Michael Richey. (C) 2023 Merrill Squiers. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>muddygs@gmail.com</authorEmail>
+	<authorUrl>https://www.github.com/muddygs</authorUrl>
 	<version>4.0.0</version>
-	<description>PLG_SYS_EMAIL_XML_DESCRIPTION</description>
+	<description>PLG_SYS_EMAILX_XML_DESCRIPTION</description>
 	<files>
-		<filename plugin="email">email.php</filename>
+		<filename plugin="emailx">emailx.php</filename>
 		<filename>LICENSE.txt</filename>
 	</files>
 	<languages folder="language">
-		<language tag="en-GB">en-GB/plg_system_email.ini</language>
-		<language tag="en-GB">en-GB/plg_system_email.sys.ini</language>
+		<language tag="en-GB">en-GB/plg_system_emailx.ini</language>
+		<language tag="en-GB">en-GB/plg_system_emailx.sys.ini</language>
 	</languages>
 </extension>

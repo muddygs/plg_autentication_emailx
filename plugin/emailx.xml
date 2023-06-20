@@ -6,16 +6,17 @@
 	<copyright>2023</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>muddygs@gmail.com</authorEmail>
+	<authorUrl>https://www.github.com/muddygs</authorUrl>
 	<version>4.0.0</version>
-	<description>PLG_AUTH_EMAIL_XML_DESCRIPTION</description>
-	<namespace path="src">Joomla\Plugin\Authentication\Email</namespace>
+	<description>PLG_AUTH_EMAILX_XML_DESCRIPTION</description>
+	<namespace path="src">Joomla\Plugin\Authentication\Emailx</namespace>
 	<files>
-		<folder plugin="email">services</folder>
+		<folder plugin="emailx">services</folder>
 		<folder>src</folder>
 		<filename>LICENSE.txt</filename>
 	</files>
 	<languages folder="language">
-		<language tag="en-GB">en-GB/plg_authentication_email.ini</language>
-		<language tag="en-GB">en-GB/plg_authentication_email.sys.ini</language>
+		<language tag="en-GB">en-GB/plg_authentication_emailx.ini</language>
+		<language tag="en-GB">en-GB/plg_authentication_emailx.sys.ini</language>
 	</languages>
 </extension>

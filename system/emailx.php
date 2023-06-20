@@ -15,13 +15,13 @@ use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\Event\SubscriberInterface;
 
 /**
- * @package plgSystemEmail
+ * @package plgSystemEmailx
  * @author Merrill Squiers
  * @since  Joomla 4.0
  * @version 4.0.0
  */
 
-class plgSystemEmail extends CMSPlugin implements SubscriberInterface
+class plgSystemEmailx extends CMSPlugin implements SubscriberInterface
 {
     // The following properties are initialized by CMSPlugin::__construct()
     protected $db;

@@ -2,7 +2,7 @@
 
 VERSION=4.0.0
 
-/usr/bin/rm plg_authentication_email.zip
+/usr/bin/rm plg_authentication_emailx.zip
 /usr/bin/rm -rf package/packages
 /usr/bin/mkdir -p package/packages
 

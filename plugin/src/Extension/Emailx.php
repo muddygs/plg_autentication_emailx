@@ -7,7 +7,7 @@
  * license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\Plugin\Authentication\Email\Extension;
+namespace Joomla\Plugin\Authentication\Emailx\Extension;
 
 use Joomla\CMS\Authentication\Authentication;
 use Joomla\CMS\Factory;
@@ -21,12 +21,12 @@ use Joomla\Database\DatabaseAwareTrait;
 // phpcs:enable PSR1.Files.SideEffects
 
 /**
- * @package Joomla\Plugin\Authentication\Email\Extension 
+ * @package Joomla\Plugin\Authentication\Emailx\Extension 
  * @author Merrill Squiers
  * @since  Joomla 4.0
  * @version 4.0.0
  */
-final class Email extends CMSPlugin
+final class Emailx extends CMSPlugin
 {
     // NOTE: Cannot use subscriberinterface because Authentication.php explicitly requires 
     // onUserAuthenticate method as of Joomla 4.3.1
