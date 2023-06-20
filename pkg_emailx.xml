@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension type="package" method="upgrade">
-    <name>Email Authentication for Joomla 4</name>
+    <name>Email-to-Username Authentication</name>
     <creationDate>June 2023</creationDate>
     <copyright>Copyright (C) 2005 - 2011 Michael Richey. (C) 2023 Merrill Squiers. All rights reserved.</copyright>
     <packagename>emailx</packagename>
@@ -10,7 +10,7 @@
     <author>Merrill Squiers/Michael Richey</author>
     <authorEmail>muddygs@gmail.com</authorEmail>
     <authorUrl>https://www.github.com/muddygs</authorUrl>
-    <description>Email-to-username authentication for Joomla 4</description>
+    <description>Email-to-username authentication</description>
     <files folder="packages">
         <file type="plugin" id="emailx" group="system">plg_system_emailx-4.0.0.zip</file>
         <file type="plugin" id="emailx" group="authentication">plg_auth_emailx-4.0.0.zip</file>
