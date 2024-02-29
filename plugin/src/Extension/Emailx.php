@@ -10,11 +10,13 @@
 namespace Joomla\Plugin\Authentication\Emailx\Extension;
 
 use Joomla\CMS\Authentication\Authentication;
-use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
+use Joomla\CMS\Event\User\AuthenticationEvent;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\CMS\User\UserFactoryAwareTrait;
 use Joomla\Database\DatabaseAwareTrait;
+use Joomla\Event\DispatcherInterface;
+use Joomla\Event\SubscriberInterface;
 
 // phpcs:disable PSR1.Files.SideEffects
 \defined('_JEXEC') or die;
@@ -26,54 +28,74 @@ use Joomla\Database\DatabaseAwareTrait;
  * @since  Joomla 4.0
  * @version 4.0.0
  */
-final class Emailx extends CMSPlugin
+final class Emailx extends CMSPlugin implements SubscriberInterface
 {
-    // NOTE: Cannot use subscriberinterface because Authentication.php explicitly requires 
-    // onUserAuthenticate method as of Joomla 4.3.1
-
-
-
     use DatabaseAwareTrait;
+    use UserFactoryAwareTrait;
+
+    /**
+     * Returns an array of events this subscriber will listen to.
+     *
+     * @return  array
+     *
+     * @since   5.0.0
+     */
+    public static function getSubscribedEvents(): array
+    {
+        return ['onUserAuthenticate' => 'onUserAuthenticate'];
+    }
 
     // The following properties are initialized by CMSPlugin::__construct()
     protected $db;
     protected $app;
     protected $autoloadLanguage = true;
 
-    private $_paj;
+    private \Joomla\Plugin\Authentication\Joomla\Extension\Joomla $_paj;
 
-    public function __construct(&$subject, $config = [])
+    public function __construct(DispatcherInterface $dispatcher, $config = [])
     {
-        parent::__construct($subject, $config);
+        parent::__construct($dispatcher, $config);
         $paj = PluginHelper::getPlugin('authentication', 'joomla');
-        $this->_paj = new \Joomla\Plugin\Authentication\Joomla\Extension\Joomla($subject, (array)$paj);
+        $this->_paj = new \Joomla\Plugin\Authentication\Joomla\Extension\Joomla($dispatcher, (array)$paj);
     }
 
     /**
      * This method should handle any authentication and report back to the subject
      */
-    function onUserAuthenticate(&$credentials, $options, &$response)
+    function onUserAuthenticate(AuthenticationEvent $event)
     {
+        $credentials = $event->getCredentials();
+        $response    = $event->getAuthenticationResponse();
+        $options     = $event->getOptions();
+
         $query = $this->db->getQuery(true);
 
         $username = $this->app->input->post->get('username', false, 'RAW');
-        $query->select('id, username, password')
+        $query->select('username')
             ->from('#__users')
             ->where('block = 0')
             ->where('UPPER(email) = UPPER(' . $this->db->Quote($username) . ')');
 
         $this->db->setQuery($query);
-        $result = $this->db->loadObject();
+        $username = $this->db->loadResult();
 
-        if ($result) {
+        if ($username) {
             // why mess with re-creating authentication - just use the system.
-            $credentials['username'] = $result->username;
+            $credentials['username'] = $username;
             $this->_paj->setDatabase($this->db);
             $this->_paj->setApplication($this->app);
-            $this->_paj->onUserAuthenticate($credentials, $options, $response);
+            $this->_paj->setUserFactory($this->getUserFactory());
+
+            $authenticationEvent = new AuthenticationEvent('onUserAuthenticate', [
+                'credentials' => $credentials,
+                'options'     => $options,
+                'subject'     => $response,
+            ]);
+            $this->_paj->onUserAuthenticate($authenticationEvent);
+            $response->username = $username;
         } else {
             $response->status = Authentication::STATUS_FAILURE;
-            $response->error_message = Text::_('JGLOBAL_AUTH_INVALID_PASS');
+            $response->error_message = $this->getApplication()->getLanguage()->_('JGLOBAL_AUTH_INVALID_PASS');
         }
     }
 }
