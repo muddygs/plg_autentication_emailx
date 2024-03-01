@@ -7,7 +7,7 @@
  * license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\Plugin\Authentication\Emailx\Extension;
+namespace ClawCorp\Plugin\Authentication\Emailx\Extension;
 
 use Joomla\CMS\Authentication\Authentication;
 use Joomla\CMS\Event\User\AuthenticationEvent;
@@ -23,10 +23,9 @@ use Joomla\Event\SubscriberInterface;
 // phpcs:enable PSR1.Files.SideEffects
 
 /**
- * @package Joomla\Plugin\Authentication\Emailx\Extension 
- * @author Merrill Squiers
- * @since  Joomla 4.0
- * @version 4.0.0
+ * @package ClawCorp\Plugin\Authentication\Emailx\Extension 
+ * @since  Joomla 5.0
+ * @version 5.0.0
  */
 final class Emailx extends CMSPlugin implements SubscriberInterface
 {
@@ -50,13 +49,13 @@ final class Emailx extends CMSPlugin implements SubscriberInterface
     protected $app;
     protected $autoloadLanguage = true;
 
-    private \Joomla\Plugin\Authentication\Joomla\Extension\Joomla $_paj;
+    private \Joomla\Plugin\Authentication\Joomla\Extension\Joomla $authPlugin;
 
     public function __construct(DispatcherInterface $dispatcher, $config = [])
     {
         parent::__construct($dispatcher, $config);
         $paj = PluginHelper::getPlugin('authentication', 'joomla');
-        $this->_paj = new \Joomla\Plugin\Authentication\Joomla\Extension\Joomla($dispatcher, (array)$paj);
+        $this->authPlugin = new \Joomla\Plugin\Authentication\Joomla\Extension\Joomla($dispatcher, (array)$paj);
     }
 
     /**
@@ -80,18 +79,19 @@ final class Emailx extends CMSPlugin implements SubscriberInterface
         $username = $this->db->loadResult();
 
         if ($username) {
-            // why mess with re-creating authentication - just use the system.
+            // Update variables and properties and use stock authentication plugin
+            
             $credentials['username'] = $username;
-            $this->_paj->setDatabase($this->db);
-            $this->_paj->setApplication($this->app);
-            $this->_paj->setUserFactory($this->getUserFactory());
+            $this->authPlugin->setDatabase($this->db);
+            $this->authPlugin->setApplication($this->app);
+            $this->authPlugin->setUserFactory($this->getUserFactory());
 
             $authenticationEvent = new AuthenticationEvent('onUserAuthenticate', [
                 'credentials' => $credentials,
                 'options'     => $options,
                 'subject'     => $response,
             ]);
-            $this->_paj->onUserAuthenticate($authenticationEvent);
+            $this->authPlugin->onUserAuthenticate($authenticationEvent);
             $response->username = $username;
         } else {
             $response->status = Authentication::STATUS_FAILURE;

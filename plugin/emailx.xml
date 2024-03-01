@@ -2,14 +2,14 @@
 <extension type="plugin" group="authentication" method="upgrade">
 	<name>plg_authentication_emailx</name>
 	<author>Merrill Squiers/Michael Richey</author>
-	<creationDate>June 2023</creationDate>
-	<copyright>Copyright (C) 2005 - 2011 Michael Richey. (C) 2023 Merrill Squiers. All rights reserved.</copyright>
+	<creationDate>2024-02-29</creationDate>
+	<copyright>Copyright (C) 2005 - 2011 Michael Richey. (C) 2024 Merrill Squiers. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>muddygs@gmail.com</authorEmail>
 	<authorUrl>https://www.github.com/muddygs</authorUrl>
-	<version>4.0.0</version>
+	<version>5.0.0</version>
 	<description>PLG_AUTH_EMAILX_XML_DESCRIPTION</description>
-	<namespace path="src">Joomla\Plugin\Authentication\Emailx</namespace>
+	<namespace path="src">ClawCorp\Plugin\Authentication\Emailx</namespace>
 	<files>
 		<folder plugin="emailx">services</folder>
 		<folder>src</folder>

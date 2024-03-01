@@ -1,10 +1,9 @@
 <?php
 
 /**
- * @package     Joomla.Plugin
- * @subpackage  Authentication.cookie
+ * @package     ClawCorp.Plugin.Authentication.Emailx
  *
- * @copyright   (C) 2023 Open Source Matters, Inc. <https://www.joomla.org>
+ * @copyright   (C) 2024 CLAW Corp.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -18,7 +17,7 @@ use Joomla\Database\DatabaseInterface;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\DispatcherInterface;
-use Joomla\Plugin\Authentication\Emailx\Extension\Emailx;
+use ClawCorp\Plugin\Authentication\Emailx\Extension\Emailx;
 
 return new class () implements ServiceProviderInterface {
     /**
