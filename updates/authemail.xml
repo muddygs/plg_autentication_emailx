@@ -1,2 +1,20 @@
 <updates>
+  <update>
+    <name>Emailx 5.0.0</name>
+		<description>Use email instead of username for authentication</description>
+		<type>plugin</type>
+		<version>5.0.0</version>
+		<infourl title="Release Notes">https://github.com/muddygs/plg_authentication_emailx/wiki/v5.0.0</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://raw.githubusercontent.com/muddygs/plg_authentication_emailx/main/releases/5.0.0/plg_authentication_emailx-5.0.0.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<sha256>ae3b8fa69af0028d158c277a178d3a7870ee58504aa8d21f9b9d16397ce59a9a</sha256>
+		<sha384>b1a28ae37382d3b5aef36dbc21602a1e1426a2c5e2d4536ed5932868d882e42faf35d43b295dbce244a3d6a6d42afcd7</sha384>
+		<sha512>f3c196f1e9da0a54dc451756af3f740484cf780e41b8fdfd06cf9a8a9e63f04572835310200188eea9328b811c6daa75e775d60fa6ededcbd925392898687603</sha512>
+		<maintainerurl>https://github.com/muddygs/plg_authentication_emailx</maintainerurl>
+		<php_minimum>8.1.0</php_minimum>
+  </update>
 </updates>
