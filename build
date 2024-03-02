@@ -1,10 +1,11 @@
 #!/bin/bash
 
-VERSION=4.0.0
+VERSION=5.0.0
 
 /usr/bin/rm plg_authentication_emailx.zip
 /usr/bin/rm -rf package/packages
 /usr/bin/mkdir -p package/packages
+/usr/bin/mkdir -p releases/$VERSION
 
 /usr/bin/cp pkg_emailx.xml package
 
