@@ -1,4 +1,6 @@
 # plg_authentication_emailx
+2024-FEB-29: Joomla 5 (J5) update is in progress.
+
 Joomla 4 (J4) plugin that allows use of account email instead of username for login and password change.
 
 This is modified code of `plg_authentication_email` that supports Joomla 3. The code has
