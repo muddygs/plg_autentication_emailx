@@ -61,11 +61,31 @@ final class Emailx extends CMSPlugin implements SubscriberInterface
     /**
      * This method should handle any authentication and report back to the subject
      */
-    function onUserAuthenticate(AuthenticationEvent $event)
+    // function onUserAuthenticate(AuthenticationEvent $event)
+    function onUserAuthenticate(&...$params)
     {
-        $credentials = $event->getCredentials();
-        $response    = $event->getAuthenticationResponse();
-        $options     = $event->getOptions();
+        $isJ4 = true;
+        $joomlaVersion = new \Joomla\CMS\Version;
+        if ($joomlaVersion->isCompatible('5.0.0')) {
+            $isJ4 = false;
+        }
+
+        if ( $isJ4 ) {
+            // Joomla 4: function onUserAuthenticate(&$credentials, $options, &$response)
+            /** @var array */
+            $credentials = $params[0];
+            /** @var array */
+            $options     = $params[1];
+            /** @var object */
+            $response    = $params[2];
+        } else {
+            // Joomla 5: function onUserAuthenticate(AuthenticationEvent $event)
+            /** @var AuthenticationEvent */
+            $event = $params[0];
+            $credentials = $event->getCredentials();
+            $response    = $event->getAuthenticationResponse();
+            $options     = $event->getOptions();
+        }
 
         $query = $this->db->getQuery(true);
 
@@ -79,20 +99,30 @@ final class Emailx extends CMSPlugin implements SubscriberInterface
         $username = $this->db->loadResult();
 
         if ($username) {
-            // Update variables and properties and use stock authentication plugin
-            
-            $credentials['username'] = $username;
-            $this->authPlugin->setDatabase($this->db);
-            $this->authPlugin->setApplication($this->app);
-            $this->authPlugin->setUserFactory($this->getUserFactory());
 
-            $authenticationEvent = new AuthenticationEvent('onUserAuthenticate', [
-                'credentials' => $credentials,
-                'options'     => $options,
-                'subject'     => $response,
-            ]);
-            $this->authPlugin->onUserAuthenticate($authenticationEvent);
-            $response->username = $username;
+            // Update variables and properties and use stock authentication plugin
+            if ( $isJ4 ) {
+                $credentials['username'] = $username;
+                $this->authPlugin->setDatabase($this->db);
+                $this->authPlugin->setApplication($this->app);
+                $this->authPlugin->onUserAuthenticate($credentials, $options, $response);
+            } else {
+                $credentials['username'] = $username;
+                $this->authPlugin->setDatabase($this->db);
+                $this->authPlugin->setApplication($this->app);
+                $this->authPlugin->setUserFactory($this->getUserFactory());
+
+                $authenticationEvent = new AuthenticationEvent('onUserAuthenticate', [
+                    'credentials' => $credentials,
+                    'options'     => $options,
+                    'subject'     => $response,
+                ]);
+                $this->authPlugin->onUserAuthenticate($authenticationEvent);
+            }
+
+            if ($response->status === \Joomla\CMS\Authentication\Authentication::STATUS_SUCCESS) {
+                $response->username = $username;
+            }
         } else {
             $response->status = Authentication::STATUS_FAILURE;
             $response->error_message = $this->getApplication()->getLanguage()->_('JGLOBAL_AUTH_INVALID_PASS');
