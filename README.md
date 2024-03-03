@@ -1,10 +1,10 @@
-# plg_authentication_emailx
-2024-FEB-29: Joomla 5 (J5) update is in progress.
+# plg\_authentication\_emailx
+2024-MAR-03: Joomla 4/5 revision released as version 5.0.1.
 
-Joomla 4 (J4) plugin that allows use of account email instead of username for login and password change.
+Joomla 4 and Joomla 5 plugin that allows use of account email instead of username for login and password change.
 
 This is modified code of `plg_authentication_email` that supports Joomla 3. The code has
-been updated for Joomla 4 compatibility. See LICENSE.txt for original copyright/license
+been updated for newer API compatibility. See LICENSE.txt for original copyright/license
 notices.
 
 Original package information here:
@@ -15,5 +15,5 @@ Original package information here:
 # Joomla 3 to Joomla 4 Upgrade Instructions
 * Before upgrade to J4, remove the old extension
 * Reinstall latest version here after J4 is up and running
-* Remember to enable both plugins (plg_authentication_emailx and plg_system_emailx) installed by this package
+* Remember to enable both plugins (plg\_authentication\_emailx and plg\_system\_emailx) installed by this package
 
