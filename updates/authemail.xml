@@ -1,20 +1,36 @@
 <updates>
-  <update>
-    <name>Emailx 5.0.0</name>
+	<update>
+		<name>Email-to-Username Authentication</name>
 		<description>Use email instead of username for authentication</description>
-		<type>plugin</type>
-		<version>5.0.0</version>
-		<infourl title="Release Notes">https://github.com/muddygs/plg_authentication_emailx/wiki/v5.0.0</infourl>
+		<element>pkg_emailx</element>
+		<type>package</type>
+		<version>5.0.1</version>
+		<client>site</client>
+		<folder/>
+		<infourl title="Release Notes">
+			https://github.com/muddygs/plg_authentication_emailx/wiki
+		</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://raw.githubusercontent.com/muddygs/plg_authentication_emailx/main/releases/5.0.0/plg_authentication_emailx-5.0.0.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://raw.githubusercontent.com/muddygs/plg_authentication_emailx/main/releases/5.0.1/plg_authentication_emailx-5.0.1.zip</downloadurl>
 		</downloads>
 		<tags>
 			<tag>stable</tag>
 		</tags>
-		<sha256>ae3b8fa69af0028d158c277a178d3a7870ee58504aa8d21f9b9d16397ce59a9a</sha256>
-		<sha384>b1a28ae37382d3b5aef36dbc21602a1e1426a2c5e2d4536ed5932868d882e42faf35d43b295dbce244a3d6a6d42afcd7</sha384>
-		<sha512>f3c196f1e9da0a54dc451756af3f740484cf780e41b8fdfd06cf9a8a9e63f04572835310200188eea9328b811c6daa75e775d60fa6ededcbd925392898687603</sha512>
-		<maintainerurl>https://github.com/muddygs/plg_authentication_emailx</maintainerurl>
-		<php_minimum>8.1.0</php_minimum>
-  </update>
+		<sha256>
+			af2e9623d3392984006d54862bf52f69793e6797f27ee94feef91ecef5101c76
+		</sha256>
+		<sha384>
+			7e521e18780884e395b60c1b6b534c30d29699fba9d9b776c352c08e9ce62db3ff14b017f9579444f4d531d2515a572a
+		</sha384>
+		<sha512>
+			c02b615b6312a560ab42c8f8b8dab55e78fe6d356551b7fbc61dca899909e537b8336a6b8184dae27bff172782e6f019de145b7e30b1872e49c05c70cc4ddded
+		</sha512>
+		<maintainerurl>
+			https://github.com/muddygs/plg_authentication_emailx
+		</maintainerurl>
+		<php_minimum>
+			8.1.0
+		</php_minimum>
+		<targetplatform name="joomla" version="4\.*|5\.*"/>
+	</update>
 </updates>

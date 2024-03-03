@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=5.0.0
+VERSION=5.0.1
 
 /usr/bin/rm plg_authentication_emailx.zip
 /usr/bin/rm -rf package/packages
@@ -15,3 +15,7 @@ cd system && zip -r ../package/packages/plg_system_emailx-$VERSION.zip . && cd -
 cd package && zip -r ../plg_authentication_emailx.zip . && cd -
 /usr/bin/cp plg_authentication_emailx.zip releases/$VERSION/plg_authentication_emailx-$VERSION.zip
 
+
+sha256sum --tag releases/$VERSION/plg_authentication_emailx-$VERSION.zip
+sha384sum --tag releases/$VERSION/plg_authentication_emailx-$VERSION.zip
+sha512sum --tag releases/$VERSION/plg_authentication_emailx-$VERSION.zip

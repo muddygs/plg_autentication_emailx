@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension type="package" method="upgrade">
     <name>Email-to-Username Authentication</name>
-    <creationDate>2024-FEB-29</creationDate>
-    <copyright>Copyright (C) 2005 - 2011 Michael Richey. (C) 2023 Merrill Squiers. All rights reserved.</copyright>
+    <creationDate>2024-MAR-03</creationDate>
+    <copyright>Copyright (C) 2005 - 2011 Michael Richey. (C) 2024 Merrill Squiers. All rights reserved.</copyright>
     <packagename>emailx</packagename>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
     <url>https://www.github.com/muddygs</url>
     <author>Merrill Squiers/Michael Richey</author>
     <authorEmail>muddygs@gmail.com</authorEmail>
