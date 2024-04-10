@@ -89,7 +89,7 @@ final class Emailx extends CMSPlugin implements SubscriberInterface
 
         $query = $this->db->getQuery(true);
 
-        $username = $this->app->input->post->get('username', false, 'RAW');
+        $username = $credentials['username'];
         $query->select('username')
             ->from('#__users')
             ->where('block = 0')
